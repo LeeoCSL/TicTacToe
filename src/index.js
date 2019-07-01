@@ -10,6 +10,8 @@ import {
   AsyncStorage
 } from "react-native";
 
+import styles from "./styles";
+
 // import { Container } from './styles';
 export default class tictactoe extends Component {
   state = {
@@ -68,6 +70,7 @@ export default class tictactoe extends Component {
   checkWin = pos => {
     let p = this.state.places;
     if (p[0] == p[1] && p[0] == p[2] && p[0] != "") {
+      console.log("verif 012");
       if (p[0] == "X") {
         this.setWonPlaces(0, 1, 2);
         this.playerWin(1);
@@ -76,6 +79,7 @@ export default class tictactoe extends Component {
         this.playerWin(2);
       }
     } else if (p[3] == p[4] && p[3] == p[5] && p[3] != "") {
+      console.log("verif 345");
       if (p[3] == "X") {
         this.setWonPlaces(3, 4, 5);
         this.playerWin(1);
@@ -84,6 +88,7 @@ export default class tictactoe extends Component {
         this.playerWin(2);
       }
     } else if (p[6] == p[7] && p[6] == p[8] && p[6] != "") {
+      console.log("verif 678");
       if (p[6] == "X") {
         this.setWonPlaces(6, 7, 8);
         this.playerWin(1);
@@ -92,6 +97,7 @@ export default class tictactoe extends Component {
         this.playerWin(2);
       }
     } else if (p[0] == p[3] && p[0] == p[6] && p[0] != "") {
+      console.log("verif 036");
       if (p[0] == "X") {
         this.setWonPlaces(0, 3, 6);
         this.playerWin(1);
@@ -100,6 +106,7 @@ export default class tictactoe extends Component {
         this.playerWin(2);
       }
     } else if (p[1] == p[4] && p[1] == p[7] && p[1] != "") {
+      console.log("verif 147");
       if (p[1] == "X") {
         this.setWonPlaces(1, 4, 7);
         this.playerWin(1);
@@ -108,6 +115,7 @@ export default class tictactoe extends Component {
         this.playerWin(2);
       }
     } else if (p[2] == p[5] && p[2] == p[8] && p[2] != "") {
+      console.log("verif 258");
       if (p[2] == "X") {
         this.setWonPlaces(2, 5, 8);
         this.playerWin(1);
@@ -116,6 +124,7 @@ export default class tictactoe extends Component {
         this.playerWin(2);
       }
     } else if (p[0] == p[4] && p[0] == p[8] && p[0] != "") {
+      console.log("verif 048");
       if (p[0] == "X") {
         this.setWonPlaces(0, 4, 8);
         this.playerWin(1);
@@ -124,6 +133,7 @@ export default class tictactoe extends Component {
         this.playerWin(2);
       }
     } else if (p[2] == p[4] && p[2] == p[6] && p[2] != "") {
+      console.log("verif 246");
       if (p[2] == "X") {
         this.setWonPlaces(2, 4, 6);
         this.playerWin(1);
@@ -137,6 +147,7 @@ export default class tictactoe extends Component {
   };
 
   draw = () => {
+    console.log(this.atLeastOneBlank());
     if (!this.atLeastOneBlank()) {
       let times = this.state.timesPlayed;
       this.setState(
@@ -156,7 +167,7 @@ export default class tictactoe extends Component {
 
   atLeastOneBlank = () => {
     let p = this.state.places;
-    for (let i = 0; i < p.length - 1; i++) {
+    for (let i = 0; i < p.length; i++) {
       if (p[i] === "") {
         return true;
       }
@@ -516,78 +527,3 @@ export default class tictactoe extends Component {
     );
   }
 }
-
-const styles = StyleSheet.create({
-  container: {
-    flex: 1
-  },
-  topBar: {
-    width: "100%",
-    height: 30,
-    backgroundColor: "#aaa"
-  },
-  textTopBar: {
-    alignSelf: "flex-end",
-    fontSize: 20,
-    marginRight: 10
-  },
-  rows: {
-    flex: 2,
-    flexDirection: "column"
-  },
-  row: {
-    flex: 1,
-    flexDirection: "row"
-  },
-  place: {
-    backgroundColor: "#fff",
-    flex: 1,
-    borderWidth: 1,
-    borderColor: "#000"
-  },
-  placeWon: {
-    backgroundColor: "#0f0",
-    flex: 1,
-    borderWidth: 1,
-    borderColor: "#000"
-  },
-  buttonPlace: {
-    flex: 1,
-    alignItems: "center",
-    justifyContent: "center"
-  },
-  textPlace: {
-    fontSize: 80,
-    alignSelf: "center"
-  },
-  textPlaceX: {
-    fontSize: 80,
-    alignSelf: "center",
-    color: "#00f"
-  },
-  textPlaceO: {
-    fontSize: 80,
-    alignSelf: "center",
-    color: "#f00"
-  },
-  footer: {
-    width: "100%",
-    height: 30,
-    backgroundColor: "#aaa"
-  },
-  footerWin: {
-    width: "100%",
-    height: 60,
-    backgroundColor: "#aaa"
-  },
-  textWin: {
-    alignSelf: "center",
-    fontSize: 20
-  },
-  bottomButton: {
-    alignSelf: "center"
-  },
-  bottomText: {
-    fontSize: 20
-  }
-});
